@@ -10,10 +10,11 @@ import {
     faHome,
     faArrowUp,
     faArrowDown,
-    faAnglesUp
+    faAnglesUp,
+    faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHome, faArrowUp, faArrowDown, faAnglesUp);
+library.add(faHome, faArrowUp, faArrowDown, faAnglesUp, faPlus);
 
 const app = createApp(App);
 app.use(pinia);
