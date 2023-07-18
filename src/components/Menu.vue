@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ButtonLinkVue from "./ButtonLink.vue";
+import ButtonLinkVue from "./ui/ButtonLink.vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
@@ -10,8 +10,8 @@ function isSelected(route: any, link: string): boolean {
 </script>
 
 <template>
-    <div>
-        <div class="py-5 bg-purple-700 flex justify-center">
+    <div class="py-5 bg-purple-700 flex justify-center">
+        <div class="container flex justify-center">
             <div class="bg-purple-900 w-fit rounded-lg flex flex-row">
                 <ButtonLinkVue
                     :name="'Home'"

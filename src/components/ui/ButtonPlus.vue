@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRoute } from "vue-router";
 
-const route = useRoute();
 const isVisibleMenu = ref(false);
-function isHome(route: any): boolean {
-    console.log(route.path);
-    return route.path === "/" ? true : false;
-}
+
 function toggleMenu(): boolean {
     isVisibleMenu.value = !isVisibleMenu.value;
     console.log(isVisibleMenu);
@@ -17,7 +12,6 @@ function toggleMenu(): boolean {
 
 <template>
     <div
-        v-if="isHome(route)"
         class="fixed lg:bottom-10 md:bottom-10 sm:bottom-28 right-5 flex flex-col items-end"
     >
         <div
