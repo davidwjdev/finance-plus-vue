@@ -6,9 +6,14 @@ import { pinia } from "./store/pinia-setup";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import router from "./router";
 
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+    faHome,
+    faArrowUp,
+    faArrowDown,
+    faAnglesUp
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHome);
+library.add(faHome, faArrowUp, faArrowDown, faAnglesUp);
 
 const app = createApp(App);
 app.use(pinia);
