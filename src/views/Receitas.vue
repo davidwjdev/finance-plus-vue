@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import ButtonVue from "../components/ui/Button.vue";
+import ModalVue from "../components/ui/Modal.vue";
 </script>
 
 <template>
+    <ModalVue :name="'Inserir'" />
     <div class="">
         <div class="p-10 bg-purple-700 flex justify-center">
             <div class="text-center container">
