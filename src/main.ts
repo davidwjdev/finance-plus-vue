@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { pinia } from "./store/pinia-setup";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import router from "./router";
-
+import * as moment from "moment";
 import {
     faHome,
     faArrowUp,
@@ -13,7 +13,9 @@ import {
     faAnglesUp,
     faPlus,
     faAngleLeft,
-    faAngleRight
+    faAngleRight,
+    faXmark,
+    faFloppyDisk
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -23,11 +25,14 @@ library.add(
     faAnglesUp,
     faPlus,
     faAngleLeft,
-    faAngleRight
+    faAngleRight,
+    faXmark,
+    faFloppyDisk
 );
 
 const app = createApp(App);
 app.use(pinia);
 app.use(router);
+app.use(moment);
 app.component("FontAwesomeIcon", FontAwesomeIcon);
 app.mount("#app");

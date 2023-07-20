@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import ButtonVue from "../components/ui/Button.vue";
 import ModalVue from "../components/ui/Modal.vue";
+import { useModalStore } from "../store/modal";
+
+const modalStore = useModalStore();
 </script>
 
 <template>
-    <ModalVue :name="'Inserir'" />
-    <div class="">
+    <ModalVue :name="'Inserir'" v-if="modalStore.isOpenModal" />
+    <div class="h-100">
         <div class="p-10 bg-purple-700 flex justify-center">
             <div class="text-center container">
                 <h1 class="font-bold font text-2xl text-slate-100">Receitas</h1>
@@ -23,6 +26,7 @@ import ModalVue from "../components/ui/Modal.vue";
                         :name="'Adicionar'"
                         :icon="'plus'"
                         :isIcon="true"
+                        @click="modalStore.toggleModal()"
                     />
                 </div>
             </div>
