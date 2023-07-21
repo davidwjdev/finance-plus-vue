@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import ButtonVue from "../components/ui/Button.vue";
 import ModalVue from "../components/ui/Modal.vue";
+import { useFormReceitasStore } from "../store/form-receitas";
 import { useModalStore } from "../store/modal";
 
 const modalStore = useModalStore();
+const formReceitasStore = useFormReceitasStore();
+
+const fetchData = () => {
+    formReceitasStore.fetchData();
+};
+fetchData();
 </script>
 
 <template>

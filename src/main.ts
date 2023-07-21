@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { pinia } from "./store/pinia-setup";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import router from "./router";
-import * as moment from "moment";
+
 import {
     faHome,
     faArrowUp,
@@ -33,6 +33,5 @@ library.add(
 const app = createApp(App);
 app.use(pinia);
 app.use(router);
-app.use(moment);
 app.component("FontAwesomeIcon", FontAwesomeIcon);
 app.mount("#app");
