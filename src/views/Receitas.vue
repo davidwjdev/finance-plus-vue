@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import ButtonVue from "../components/ui/Button.vue";
 import ModalVue from "../components/ui/Modal.vue";
-import { useFormReceitasStore } from "../store/form-receitas";
+import { useReceitasStore } from "../store/receitas";
 import { useModalStore } from "../store/modal";
-
 const modalStore = useModalStore();
-const formReceitasStore = useFormReceitasStore();
+const receitasStore = useReceitasStore();
 
 const fetchData = () => {
-    formReceitasStore.fetchData();
+    receitasStore.fetchData();
 };
 fetchData();
 </script>
 
 <template>
     <ModalVue :name="'Inserir'" v-if="modalStore.isOpenModal" />
-    <div class="h-100">
+    <div class="h-100 mb-32">
         <div class="p-10 bg-purple-700 flex justify-center">
             <div class="text-center container">
                 <h1 class="font-bold font text-2xl text-slate-100">Receitas</h1>
@@ -41,7 +40,7 @@ fetchData();
 
         <div class="flex justify-center">
             <div
-                class="mx-5 p-5 bg-purple-950 rounded-lg text-slate-100 container"
+                class="mx-5 p-5 bg-purple-950 rounded-lg text-slate-100 container xl:w-1/2 lg:w-1/2"
             >
                 <div class="flex justify-between items-center mb-3">
                     <ButtonVue :name="''" :icon="'angle-left'" :isIcon="true" />
@@ -54,30 +53,26 @@ fetchData();
                     />
                 </div>
                 <div class="w-100">
-                    <table class="table-auto">
-                        <thead class="font-bold">
-                            <th>Dia</th>
-                            <th>Descrição</th>
-                            <th>Valor</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>15</td>
-                                <td>Teste</td>
-                                <td>R$ 15,00</td>
-                            </tr>
-                            <tr>
-                                <td>15</td>
-                                <td>tetetetetete</td>
-                                <td>R$ 15,00</td>
-                            </tr>
-                            <tr>
-                                <td>15</td>
-                                <td>tetetetetete</td>
-                                <td>R$ 15,00</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="">
+                        <div class="font-bold grid grid-cols-6">
+                            <div class="col-span-1">Dia</div>
+                            <div class="col-span-3">Descrição</div>
+                            <div class="col-span-2">Valor</div>
+                        </div>
+                        <div v-for="item in receitasStore.data">
+                            <div class="grid grid-cols-6">
+                                <div class="col-span-1">
+                                    <span>{{ item.dia }}</span>
+                                </div>
+                                <div class="col-span-3">
+                                    <span>{{ item.descricao }}</span>
+                                </div>
+                                <div class="col-span-2">
+                                    <span>{{ item.valor }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,3 +80,4 @@ fetchData();
 </template>
 
 <style scoped></style>
+../store/receitas

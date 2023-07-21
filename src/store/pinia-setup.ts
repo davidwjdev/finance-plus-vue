@@ -1,7 +1,7 @@
 import { createPinia } from "pinia";
 import { App } from "vue";
 import { useModalStore } from "./modal";
-import { useFormReceitasStore } from "./form-receitas";
+import { useReceitasStore } from "./receitas";
 import { useInputCurrencyStore } from "./input-currency";
 
 export const pinia = createPinia();
@@ -12,9 +12,9 @@ const modalStore = {
     }
 };
 
-const formReceitasStore = {
+const receitasStore = {
     install: (app: App) => {
-        app.provide("formReceitasStore", useFormReceitasStore());
+        app.provide("receitasStore", useReceitasStore());
     }
 };
 
@@ -26,7 +26,7 @@ const inputCurrencyStore = {
 
 export function setupPinia(app: App<Element>) {
     app.use(modalStore);
-    app.use(formReceitasStore);
+    app.use(receitasStore);
     app.use(inputCurrencyStore);
 
     app.use(pinia);
