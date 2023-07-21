@@ -24,9 +24,6 @@ fetchData();
             <div
                 class="text-purple-950 container p-5 flex lg:flex-row lg:justify-between md:flex-row md:justify-between sm:flex-col-reverse"
             >
-                <div class="m-2">
-                    <h2 class="font-bold">Últimas Receitas:</h2>
-                </div>
                 <div class="m-2 flex justify-end">
                     <ButtonVue
                         :name="'Adicionar'"
@@ -44,7 +41,6 @@ fetchData();
             >
                 <div class="flex justify-between items-center mb-3">
                     <ButtonVue :name="''" :icon="'angle-left'" :isIcon="true" />
-
                     <span class="font-bold">Mes:</span>
                     <ButtonVue
                         :name="''"
@@ -54,21 +50,27 @@ fetchData();
                 </div>
                 <div class="w-100">
                     <div class="">
-                        <div class="font-bold grid grid-cols-6">
-                            <div class="col-span-1">Dia</div>
-                            <div class="col-span-3">Descrição</div>
-                            <div class="col-span-2">Valor</div>
-                        </div>
-                        <div v-for="item in receitasStore.data">
-                            <div class="grid grid-cols-6">
-                                <div class="col-span-1">
-                                    <span>{{ item.dia }}</span>
-                                </div>
-                                <div class="col-span-3">
-                                    <span>{{ item.descricao }}</span>
-                                </div>
-                                <div class="col-span-2">
+                        <div v-for="(item, key) in receitasStore.data">
+                            <div
+                                class="flex flex-col rounded-lg p-5 m-1 odd:bg-purple-900 even:bg-purple-400"
+                                :key="key"
+                            >
+                                <div class="flex justify-between font-bold">
+                                    <span>{{ item.data }}</span>
                                     <span>{{ item.valor }}</span>
+                                </div>
+                                <div class="">
+                                    <span class="">{{ item.descricao }}</span>
+                                </div>
+                                <div class="flex flex-row mt-1">
+                                    <div v-for="(tag, keytag) in item.tags">
+                                        <div
+                                            class="me-1 p-1 rounded-lg font-bold bg-green-800 bg-gradient-to-tr"
+                                            :key="keytag"
+                                        >
+                                            {{ tag }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

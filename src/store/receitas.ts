@@ -9,6 +9,7 @@ interface Receita {
     dia: string;
     mes: string;
     ano: string;
+    tags: Array<{}>;
 }
 interface ReceitasModel {
     data: Receita[];
@@ -34,9 +35,10 @@ export const useReceitasStore = defineStore("receitasStore", {
                         }
                     }
                 );
+                console.log(response);
                 const result: any = response.data.records.map((res: any) => {
                     return {
-                        data: res.fields.data,
+                        data: moment(res.fields.data).format("DD/MM/YYYY"),
                         descricao: res.fields.descricao,
                         valor: `R$ ${res.fields.valor}`,
                         dia:
@@ -49,7 +51,8 @@ export const useReceitasStore = defineStore("receitasStore", {
                                 ? "0" +
                                   moment(res.fields.data).month().toString()
                                 : moment(res.fields.data).month().toString(),
-                        ano: moment(res.fields.data).year().toString()
+                        ano: moment(res.fields.data).year().toString(),
+                        tags: JSON.parse(res.fields.tags)
                     };
                 });
                 return this.updateData(result);
@@ -58,6 +61,7 @@ export const useReceitasStore = defineStore("receitasStore", {
             }
         },
         updateData(data: any) {
+            console.log(data);
             this.data = data;
         }
     }
