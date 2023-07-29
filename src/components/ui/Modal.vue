@@ -8,7 +8,7 @@ const modalStore = useModalStore();
 
 <template>
     <div
-        class="absolute top-0 w-screen h-screen bg-transparent backdrop-blur-sm backdrop-brightness-50 flex justify-center items-center"
+        class="top-0 w-screen h-screen bg-transparent backdrop-blur-sm backdrop-brightness-50 flex justify-center items-center fixed inset-0 overflow-hidden"
     >
         <div
             class="bg-purple-600 xl:w-3/12 lg:w-2/5 md:w-2/3 sm:w-11/12 rounded-lg shadow-black shadow-2xl border-purple-500 border-solid border-2"

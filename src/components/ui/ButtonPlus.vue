@@ -5,7 +5,6 @@ const isVisibleMenu = ref(false);
 
 function toggleMenu(): boolean {
     isVisibleMenu.value = !isVisibleMenu.value;
-    console.log(isVisibleMenu);
     return isVisibleMenu.value;
 }
 </script>

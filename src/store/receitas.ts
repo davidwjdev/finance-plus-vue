@@ -13,13 +13,19 @@ interface Receita {
 }
 interface ReceitasModel {
     data: Receita[];
+    dataPage: Receita[];
     apiKey: string;
     endpointUrl: string;
+    monthPage: string;
+    yearPage: string;
 }
 
 export const useReceitasStore = defineStore("receitasStore", {
     state: (): ReceitasModel => ({
         data: [],
+        dataPage: [],
+        monthPage: moment().format("MM"),
+        yearPage: moment().format("YYYY"),
         apiKey: import.meta.env.VITE_APP_API_KEY,
         endpointUrl: import.meta.env.VITE_APP_BASE_URL
     }),
@@ -35,23 +41,14 @@ export const useReceitasStore = defineStore("receitasStore", {
                         }
                     }
                 );
-                console.log(response);
                 const result: any = response.data.records.map((res: any) => {
                     return {
-                        data: moment(res.fields.data).format("DD/MM/YYYY"),
+                        data: moment(res.fields.data),
                         descricao: res.fields.descricao,
-                        valor: `R$ ${res.fields.valor}`,
-                        dia:
-                            moment(res.fields.data).day().toString().length < 2
-                                ? "0" + moment(res.fields.data).day().toString()
-                                : moment(res.fields.data).day().toString(),
-                        mes:
-                            moment(res.fields.data).month().toString().length <
-                            2
-                                ? "0" +
-                                  moment(res.fields.data).month().toString()
-                                : moment(res.fields.data).month().toString(),
-                        ano: moment(res.fields.data).year().toString(),
+                        valor: res.fields.valor,
+                        dia: moment(res.fields.data).format("DD"),
+                        mes: moment(res.fields.data).format("MM"),
+                        ano: moment(res.fields.data).format("YYYY"),
                         tags: JSON.parse(res.fields.tags)
                     };
                 });
@@ -60,9 +57,33 @@ export const useReceitasStore = defineStore("receitasStore", {
                 console.error("Erro ao localizar receitas:", err);
             }
         },
-        updateData(data: any) {
-            console.log(data);
-            this.data = data;
+        updateData(data: Array<any>) {
+            // this.data = data;
+            this.dataPage = this.filterData(data);
+
+            return this.dataPage;
+        },
+        filterData(data: Array<any>) {
+            const dataFilter = data.filter((item: any) => {
+                return (
+                    item.mes === this.monthPage && item.ano === this.yearPage
+                );
+            });
+
+            return dataFilter.sort((a: any, b: any) => a.dia - b.dia);
+        },
+
+        formatDate(date: string) {
+            const format = moment(date).format("DD/MM/YYYY");
+            return format;
         }
+        // getMonthNow() {
+        //     const monthNow =
+        //     return monthNow;
+        // },
+        // getYearNow() {
+        //     const yearNow =
+        //     return yearNow;
+        // }
     }
 });
