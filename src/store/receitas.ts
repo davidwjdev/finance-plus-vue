@@ -52,6 +52,7 @@ export const useReceitasStore = defineStore("receitasStore", {
                         tags: JSON.parse(res.fields.tags)
                     };
                 });
+                console.log(result);
                 return this.updateData(result);
             } catch (err) {
                 console.error("Erro ao localizar receitas:", err);
@@ -76,14 +77,32 @@ export const useReceitasStore = defineStore("receitasStore", {
         formatDate(date: string) {
             const format = moment(date).format("DD/MM/YYYY");
             return format;
+        },
+
+        nextPage() {
+            let month = this.monthPage;
+            let year = this.yearPage;
+
+            if (parseInt(this.monthPage) === 12) {
+                month = "01";
+                year = (parseInt(year) + 1).toString();
+            } else {
+                month = (parseInt(month) + 1).toString();
+            }
+            this.monthPage = moment(month, "MM").format("MM");
+            this.yearPage = moment(year, "YYYY").format("YYYY");
+        },
+        previousPage() {
+            let month = this.monthPage;
+            let year = this.yearPage;
+            if (parseInt(this.monthPage) === 1) {
+                month = "12";
+                year = (parseInt(year) - 1).toString();
+            } else {
+                month = (parseInt(month) - 1).toString();
+            }
+            this.monthPage = moment(month, "MM").format("MM");
+            this.yearPage = moment(year, "YYYY").format("YYYY");
         }
-        // getMonthNow() {
-        //     const monthNow =
-        //     return monthNow;
-        // },
-        // getYearNow() {
-        //     const yearNow =
-        //     return yearNow;
-        // }
     }
 });

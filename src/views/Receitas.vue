@@ -43,7 +43,12 @@ fetchData();
                 class="mx-5 p-5 bg-purple-950 rounded-lg text-slate-100 container xl:w-1/2 lg:w-1/2"
             >
                 <div class="flex justify-between items-center mb-3">
-                    <ButtonVue :name="''" :icon="'angle-left'" :isIcon="true" />
+                    <ButtonVue
+                        :name="''"
+                        :icon="'angle-left'"
+                        :isIcon="true"
+                        @click="receitasStore.previousPage()"
+                    />
                     <span
                         class="font-bold"
                         :class="
@@ -62,6 +67,7 @@ fetchData();
                         :name="''"
                         :icon="'angle-right'"
                         :isIcon="true"
+                        @click="receitasStore.nextPage()"
                     />
                 </div>
                 <div class="w-100">
