@@ -59,9 +59,8 @@ export const useReceitasStore = defineStore("receitasStore", {
             }
         },
         updateData(data: Array<any>) {
-            // this.data = data;
+            this.data = data;
             this.dataPage = this.filterData(data);
-
             return this.dataPage;
         },
         filterData(data: Array<any>) {
@@ -71,6 +70,7 @@ export const useReceitasStore = defineStore("receitasStore", {
                 );
             });
 
+            console.log(dataFilter);
             return dataFilter.sort((a: any, b: any) => a.dia - b.dia);
         },
 
@@ -91,6 +91,7 @@ export const useReceitasStore = defineStore("receitasStore", {
             }
             this.monthPage = moment(month, "MM").format("MM");
             this.yearPage = moment(year, "YYYY").format("YYYY");
+            this.dataPage = this.filterData(this.data);
         },
         previousPage() {
             let month = this.monthPage;
@@ -103,6 +104,7 @@ export const useReceitasStore = defineStore("receitasStore", {
             }
             this.monthPage = moment(month, "MM").format("MM");
             this.yearPage = moment(year, "YYYY").format("YYYY");
+            this.dataPage = this.filterData(this.data);
         }
     }
 });

@@ -49,14 +49,7 @@ fetchData();
                         :isIcon="true"
                         @click="receitasStore.previousPage()"
                     />
-                    <span
-                        class="font-bold"
-                        :class="
-                            receitasStore.dataPage.length <= 0
-                                ? 'animate-pulse h-3 flex flex-row w-16 bg-slate-400 rounded me-3 text-transparent'
-                                : ''
-                        "
-                    >
+                    <span class="font-bold">
                         {{
                             receitasStore.monthPage +
                             "/" +
@@ -73,26 +66,11 @@ fetchData();
                 <div class="w-100">
                     <div v-if="receitasStore.dataPage.length <= 0">
                         <div
-                            class="flex animate-pulse flex-col rounded-lg p-5 m-1 odd odd:bg-purple-900 even:bg-purple-400"
+                            class="flex flex-col rounded-lg p-5 m-1 odd odd:bg-purple-900 even:bg-purple-400"
                         >
-                            <div class="flex justify-between font-bold mb-2">
-                                <span
-                                    class="h-3 flex flex-row grow bg-slate-400 rounded me-3"
-                                ></span>
-                                <span
-                                    class="h-3 flex flex-row grow bg-slate-400 rounded"
-                                ></span>
-                            </div>
-                            <div class="mb-2">
-                                <span
-                                    class="h-3 flex flex-row grow bg-slate-400 rounded"
-                                ></span>
-                            </div>
-                            <div class="flex flex-row mb-2">
-                                <span
-                                    class="h-5 flex flex-row grow bg-slate-400 rounded"
-                                ></span>
-                            </div>
+                            <span class="text-center p-5">
+                                Não foram encontrados registros!
+                            </span>
                         </div>
                     </div>
                     <div
@@ -116,7 +94,7 @@ fetchData();
                             <div class="flex flex-row mt-1">
                                 <div v-for="(tag, keytag) in item.tags">
                                     <div
-                                        class="me-1 p-1 rounded-lg font-bold bg-green-800 bg-gradient-to-tr"
+                                        class="me-1 py-2 px-5 rounded-lg font-bold bg-green-800 bg-gradient-to-tr"
                                         :key="keytag"
                                     >
                                         {{ tag }}
