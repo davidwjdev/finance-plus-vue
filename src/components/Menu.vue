@@ -10,9 +10,13 @@ function isSelected(route: any, link: string): boolean {
 </script>
 
 <template>
-    <div class="py-5 bg-purple-700 flex justify-center">
+    <div
+        class="py-5 bg-slate-900 flex justify-center shadow-zinc-950 shadow-lg"
+    >
         <div class="container flex justify-center">
-            <div class="bg-purple-900 w-fit rounded-lg flex flex-row">
+            <div
+                class="bg-slate-700 rounded-lg flex flex-row shadow-zinc-950 shadow-inner"
+            >
                 <ButtonLinkVue
                     :name="'Home'"
                     :icon="'house'"
@@ -32,7 +36,7 @@ function isSelected(route: any, link: string): boolean {
                     :link="'/despesas'"
                 />
                 <ButtonLinkVue
-                    :name="'Investimentos'"
+                    :name="'Invest'"
                     :icon="'angles-up'"
                     :selected="isSelected(route, '/investimentos')"
                     :link="'/investimentos'"

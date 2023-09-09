@@ -6,10 +6,8 @@ defineProps<{ name: string; icon: string; selected: boolean; link: string }>();
     <router-link :to="link">
         <button
             :class="[
-                ' rounded-lg px-3 py-2 m-1 font-bold hover:bg-purple-500 ',
-                selected
-                    ? 'bg-purple-600 text-slate-100 '
-                    : 'bg-purple-900 text-slate-100'
+                ' rounded-lg px-3 py-2 m-1 font-bold hover:bg-slate-400  min-h-[3em] min-w-[3em]',
+                selected ? 'bg-slate-500 text-slate-100 ' : ' text-slate-100'
             ]"
         >
             <font-awesome-icon :icon="['fas', icon]" />

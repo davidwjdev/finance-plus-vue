@@ -3,7 +3,7 @@ import ButtonPlusVue from "../components/ui/ButtonPlus.vue";
 </script>
 
 <template>
-    <div>
+    <div class="h-fit">
         Olá
         <ButtonPlusVue />
     </div>
