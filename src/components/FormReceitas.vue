@@ -4,7 +4,7 @@ import InputCurrency from "./ui/InputCurrency.vue";
 </script>
 
 <template>
-    <div class="bg-slate-200 text-purple-950 p-5 flex flex-col justify-center">
+    <div class="bg-gray-500 text-slate-900 p-5 flex flex-col justify-center">
         <div class="flex flex-col mb-3">
             <label class="font-bold mb-1" for="data">Data:</label>
             <input
