@@ -1,8 +1,9 @@
 import axios from "axios";
 import moment from "moment";
 import { defineStore } from "pinia";
+import { useModalStore } from "./modal";
 
-interface Receita {
+interface ReceitaModel {
     data: string;
     descricao: string;
     valor: string;
@@ -12,8 +13,9 @@ interface Receita {
     tags: Array<{}>;
 }
 interface ReceitasModel {
-    data: Receita[];
-    dataPage: Receita[];
+    item: ReceitaModel;
+    data: ReceitaModel[];
+    dataPage: ReceitaModel[];
     apiKey: string;
     endpointUrl: string;
     monthPage: string;
@@ -22,6 +24,15 @@ interface ReceitasModel {
 
 export const useReceitasStore = defineStore("receitasStore", {
     state: (): ReceitasModel => ({
+        item: {
+            data: "",
+            descricao: "",
+            valor: "",
+            dia: "",
+            mes: "",
+            ano: "",
+            tags: []
+        },
         data: [],
         dataPage: [],
         monthPage: moment().format("MM"),
@@ -52,7 +63,6 @@ export const useReceitasStore = defineStore("receitasStore", {
                         tags: JSON.parse(res.fields.tags)
                     };
                 });
-                console.log(result);
                 return this.updateData(result);
             } catch (err) {
                 console.error("Erro ao localizar receitas:", err);
@@ -70,7 +80,6 @@ export const useReceitasStore = defineStore("receitasStore", {
                 );
             });
 
-            console.log(dataFilter);
             return dataFilter.sort((a: any, b: any) => a.dia - b.dia);
         },
 
@@ -105,6 +114,31 @@ export const useReceitasStore = defineStore("receitasStore", {
             this.monthPage = moment(month, "MM").format("MM");
             this.yearPage = moment(year, "YYYY").format("YYYY");
             this.dataPage = this.filterData(this.data);
+        },
+        insertData(data: ReceitaModel) {
+            try {
+                axios.post(
+                    this.endpointUrl + "/Receitas",
+                    {
+                        fields: {
+                            descricao: data.descricao,
+                            valor: data.valor,
+                            data: data.data,
+                            tags: data.tags
+                        }
+                    },
+                    {
+                        headers: {
+                            Authorization: this.apiKey,
+                            "Content-Type": "application/json"
+                        }
+                    }
+                );
+                useModalStore().toggleModal();
+                return this.fetchData();
+            } catch (err) {
+                console.error("Erro ao Inserir receita API:", err);
+            }
         }
     }
 });

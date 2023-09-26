@@ -11,7 +11,7 @@ function isSelected(route: any, link: string): boolean {
 
 <template>
     <div
-        class="py-5 bg-slate-900 flex justify-center shadow-zinc-950 shadow-lg z-40"
+        class="py-5 bg-slate-900 flex justify-center shadow-zinc-950 shadow-md z-40"
     >
         <div class="container flex justify-center">
             <div

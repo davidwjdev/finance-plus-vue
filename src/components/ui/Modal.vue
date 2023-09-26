@@ -14,9 +14,9 @@ const modalStore = useModalStore();
             class="bg-gray-700 xl:w-3/12 lg:w-2/5 md:w-2/3 sm:w-11/12 rounded shadow-black shadow-2xl border-gray-500 border-solid border-2"
         >
             <div
-                class="m-3  text-slate-50 font-bold flex flex-row items-center justify-between"
+                class="m-3 text-slate-50 font-bold flex flex-row items-center justify-between"
             >
-                <span class="text-2xl">{{ name }}</span>
+                <span class="text-2xl ms-10">{{ name }}</span>
                 <div class="">
                     <ButtonVue
                         :name="''"
